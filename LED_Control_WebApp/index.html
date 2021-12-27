@@ -1,0 +1,119 @@
+<html>
+<head>
+  <style>
+  .on-button {
+    background-color: red;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  </style>
+  <style>
+  .off-button {
+    background-color: blue;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+</style>
+
+</head>
+  <body>
+      <div>
+      <h2>LED Remote Control</h2>
+      <h1 id="OUT_TEXT"></h1>
+      
+      <button class="on-button" id = "onBtn" >LED ON</button>      
+      <button class="off-button" id = "offBtn" >LED OFF</button>
+    </div>
+    <div>
+      <img src="1off.png"  id = "Image">
+    </div>
+     
+
+      <script type="module">
+      // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+        import { getDatabase, ref, set, get, onValue, child} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+        // export { getDatabase, ref, set, get, onValue, child };
+        
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyCMq_VR-2yxc7dToAWe4xrgzI3OQfk_7dY",
+            authDomain: "fb-webandroid02.firebaseapp.com",
+            databaseURL: "https://fb-webandroid02-default-rtdb.firebaseio.com",
+            projectId: "fb-webandroid02",
+            storageBucket: "fb-webandroid02.appspot.com",
+            messagingSenderId: "99767690956",
+            appId: "1:99767690956:web:19f06e39be41517d708469",
+            measurementId: "G-2V40T6KK2C"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getDatabase(app);
+        console.log(db);
+
+        // 버튼을 클릭했을때 onBtn 조건이 실행
+        var OnButton = document.getElementById("onBtn");
+        OnButton.addEventListener("click", onBtnClick, false);
+
+        // 버튼을 클릭했을때 offBtn 조건이 실행
+        var OffButton = document.getElementById("offBtn");
+        OffButton.addEventListener("click", offBtnClick, false);
+
+
+        // 이미지 조건
+        function Led_On_Img(){
+            document.getElementById("Image").src = "1on.png";
+        }
+        function Led_Off_Img(){
+            document.getElementById("Image").src = "1off.png";
+        }
+
+        // LED ON OFF 버튼을 눌렀을때 조건
+        function onBtnClick(event) {
+          set(ref(db, 'LED_STATUS'), 'ON');
+          console.log("LED ON");
+        }
+                                                       
+        function offBtnClick() {
+          set(ref(db, 'LED_STATUS'), 'OFF');
+          console.log("LED OFF");
+          
+        }
+
+        const dbRef = ref(db, 'LED_STATUS');
+        onValue(dbRef, (snapshot) => {
+            console.log(snapshot.val());
+            OUT_TEXT.innerText = 'LED STATUS : ' + snapshot.val();
+            if(snapshot.val() == 'ON'){                
+                Led_On_Img();
+                document.getElementById("OUT_TEXT").style.color = "#FF0000"; // LED ON 을 눌렀을때 전구가 켜진 이미지와 빨간 글씨가 나오게
+            }else{
+            document.getElementById("OUT_TEXT").style.color = "#0054FF"; // LED OFF 을 눌렀을때 전구가 꺼진 이미지와 파란 글씨가 나오게
+            Led_Off_Img();
+            }
+        })
+        
+      </script>
+    </body>
+</html>
