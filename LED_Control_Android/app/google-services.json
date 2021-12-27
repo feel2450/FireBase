@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "99767690956",
+    "firebase_url": "https://fb-webandroid02-default-rtdb.firebaseio.com",
+    "project_id": "fb-webandroid02",
+    "storage_bucket": "fb-webandroid02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99767690956:android:78725013f5eeacfa708469",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99767690956-c4haj6dpbck4ban77p8v5lkpsohvl3th.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebase",
+            "certificate_hash": "bb0c06d4a32fc913c7b420276755bc07f7b92bf1"
+          }
+        },
+        {
+          "client_id": "99767690956-6lhr9dvb5dm1l45j9mridj8muvqh1gn2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-2Q9LP2c9hZwb-REeHoHMeSOFgJLc8xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99767690956-6lhr9dvb5dm1l45j9mridj8muvqh1gn2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
